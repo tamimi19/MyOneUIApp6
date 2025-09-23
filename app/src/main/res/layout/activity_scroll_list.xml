@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<de.dlyt.yanndroid.samsung.layout.ToolbarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:title="@string/scroll_list_title"
+    app:subtitle="@string/scroll_list_subtitle"
+    app:navigationIcon="@drawable/ic_back"
+    app:expanded="true"
+    app:expandable="true">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:padding="16dp"
+        android:clipToPadding="false" />
+
+</de.dlyt.yanndroid.samsung.layout.ToolbarLayout>
