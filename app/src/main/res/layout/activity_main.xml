@@ -61,10 +61,10 @@
     </LinearLayout>
 
     <!-- Main Content -->
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,6 +118,6 @@
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </de.dlyt.yanndroid.samsung.layout.DrawerLayout>
