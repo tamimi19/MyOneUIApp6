@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">OneUI App</string>
+    <string name="app_subtitle">Modern Android Experience</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_scroll_list">Scroll List</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Home Screen -->
+    <string name="welcome_message">Welcome to OneUI App</string>
+    <string name="welcome_description">Experience the modern Samsung One UI design with smooth animations and intuitive navigation.</string>
+    <string name="card_title_features">Key Features</string>
+    <string name="card_description_features">• Pull-down gesture for easy navigation\n• Dark and light theme support\n• Arabic and English languages\n• 200-item scrollable list\n• Instant theme and language switching</string>
+
+    <!-- Scroll List -->
+    <string name="scroll_list_title">Scroll List</string>
+    <string name="scroll_list_subtitle">200 Items to Explore</string>
+    <string name="item_description_1">This is a sample item with OneUI design styling</string>
+    <string name="item_description_2">Experience smooth scrolling with collapsing toolbar</string>
+    <string name="item_description_3">Each item features the distinctive OneUI card design</string>
+    <string name="item_description_4">Optimized for single-handed usage with pull gesture</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Customize Your Experience</string>
+    <string name="language_setting">Language</string>
+    <string name="theme_setting">Appearance</string>
+    <string name="notification_setting">Notifications</string>
+
+    <!-- Language Options -->
+    <string name="current_language_english">English</string>
+    <string name="current_language_arabic">العربية</string>
+
+    <!-- Theme Options -->
+    <string name="current_theme_light">Light Theme</string>
+    <string name="current_theme_dark">Dark Theme</string>
+
+    <!-- Notification -->
+    <string name="notification_option_text">Manage App Notifications</string>
+
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="close">Close</string>
+</resources>
