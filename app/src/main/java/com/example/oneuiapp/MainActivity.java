@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
-        if (drawerLayout != null && drawerLayout.isDrawerOpen()) {
+        if (drawerLayout != null && drawerLayout.isOpen()) {
             drawerLayout.setDrawerOpen(false, true);
         } else {
             super.onBackPressed();
