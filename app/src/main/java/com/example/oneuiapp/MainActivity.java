@@ -16,6 +16,7 @@ import de.dlyt.yanndroid.samsung.drawer.Divider;
 
 import com.example.oneuiapp.utils.ThemeHelper;
 import com.example.oneuiapp.utils.LanguageHelper;
+import com.example.oneuiapp.utils.CrashHandler;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Setup crash handler first
+        CrashHandler.setupCrashHandler(this);
+        
         // Apply language and theme before creating
         LanguageHelper.setLocale(this, LanguageHelper.getLanguage(this));
         ThemeHelper.applyTheme(this);
