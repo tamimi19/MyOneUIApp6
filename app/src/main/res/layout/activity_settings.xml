@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<de.dlyt.yanndroid.samsung.layout.ToolbarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:title="@string/settings_title"
+    app:subtitle="@string/settings_subtitle"
+    app:navigationIcon="@drawable/ic_back"
+    app:expanded="true"
+    app:expandable="true">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <de.dlyt.yanndroid.samsung.RelatedCard
+                android:id="@+id/language_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:title="@string/language_setting">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/language_option"
+                    style="@style/RelatedButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_language_english"
+                    android:drawableStart="@drawable/ic_language"
+                    android:drawablePadding="12dp" />
+
+            </de.dlyt.yanndroid.samsung.RelatedCard>
+
+            <de.dlyt.yanndroid.samsung.RelatedCard
+                android:id="@+id/theme_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:title="@string/theme_setting">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/theme_option"
+                    style="@style/RelatedButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_theme_light"
+                    android:drawableStart="@drawable/ic_theme"
+                    android:drawablePadding="12dp" />
+
+            </de.dlyt.yanndroid.samsung.RelatedCard>
+
+            <de.dlyt.yanndroid.samsung.RelatedCard
+                android:id="@+id/notification_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:title="@string/notification_setting">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/notification_option"
+                    style="@style/RelatedButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notification_option_text"
+                    android:drawableStart="@drawable/ic_notifications"
+                    android:drawablePadding="12dp" />
+
+            </de.dlyt.yanndroid.samsung.RelatedCard>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</de.dlyt.yanndroid.samsung.layout.ToolbarLayout>
