@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 
 import de.dlyt.yanndroid.samsung.layout.DrawerLayout;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         // Setup click listeners
         optionGroup.setOnOptionButtonClickListener(new OptionGroup.OnOptionButtonClickListener() {
             @Override
-            public void onOptionButtonClick(OptionButton optionButton, View view, int id, int position) {
+            public void onOptionButtonClick(OptionButton optionButton, int position, int id) {
                 handleDrawerSelection(id);
             }
         });
@@ -98,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
-        if (drawerLayout != null && drawerLayout.isDrawerOpen()) {
+        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.setDrawerOpen(false, true);
         } else {
             super.onBackPressed();
         }
     }
-    }
+}
