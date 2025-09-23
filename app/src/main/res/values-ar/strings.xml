@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">تطبيق ون يو آي</string>
+    <string name="app_subtitle">تجربة أندرويد عصرية</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_scroll_list">شاشة التمرير</string>
+    <string name="nav_settings">الإعدادات</string>
+
+    <!-- Home Screen -->
+    <string name="welcome_message">مرحباً بك في تطبيق ون يو آي</string>
+    <string name="welcome_description">استمتع بتصميم سامسونج ون يو آي العصري مع الحركات السلسة والتنقل البديهي.</string>
+    <string name="card_title_features">الميزات الرئيسية</string>
+    <string name="card_description_features">• إيماءة السحب للأسفل للتنقل السهل\n• دعم الثيم المظلم والفاتح\n• اللغتين العربية والإنجليزية\n• قائمة تمرير بـ 200 عنصر\n• تبديل فوري للثيم واللغة</string>
+
+    <!-- Scroll List -->
+    <string name="scroll_list_title">شاشة التمرير</string>
+    <string name="scroll_list_subtitle">200 عنصر للاستكشاف</string>
+    <string name="item_description_1">هذا عنصر تجريبي بتصميم ون يو آي الأنيق</string>
+    <string name="item_description_2">استمتع بالتمرير السلس مع الشريط القابل للطي</string>
+    <string name="item_description_3">كل عنصر يتميز بتصميم البطاقات المميز لون يو آي</string>
+    <string name="item_description_4">محسن للاستخدام بيد واحدة مع إيماءة السحب</string>
+
+    <!-- Settings -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_subtitle">خصص تجربتك</string>
+    <string name="language_setting">اللغة</string>
+    <string name="theme_setting">المظهر</string>
+    <string name="notification_setting">الإشعارات</string>
+
+    <!-- Language Options -->
+    <string name="current_language_english">English</string>
+    <string name="current_language_arabic">العربية</string>
+
+    <!-- Theme Options -->
+    <string name="current_theme_light">الثيم الفاتح</string>
+    <string name="current_theme_dark">الثيم المظلم</string>
+
+    <!-- Notification -->
+    <string name="notification_option_text">إدارة إشعارات التطبيق</string>
+
+    <!-- Common -->
+    <string name="back">رجوع</string>
+    <string name="close">إغلاق</string>
+</resources>
