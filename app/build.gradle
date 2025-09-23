@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     namespace 'com.example.oneuiapp'
-    compileSdk 30
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.oneuiapp"
-        minSdk 26
-        targetSdk 30
+        minSdk 30
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
