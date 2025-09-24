@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/nav_home"
-                app:icon="@drawable/ic_samsung_home" />
+                app:icon="@drawable/ic_samsung_info" />
 
             <de.dlyt.yanndroid.samsung.drawer.Divider
                 android:layout_width="match_parent"
