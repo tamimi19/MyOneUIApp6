@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <de.dlyt.yanndroid.samsung.drawer.OptionGroup
+        android:id="@+id/option_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:selectedOptionButton="@id/option_home">
+
+        <de.dlyt.yanndroid.samsung.drawer.OptionButton
+            android:id="@+id/option_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_samsung_info"
+            app:text="@string/nav_home" />
+
+        <de.dlyt.yanndroid.samsung.drawer.OptionButton
+            android:id="@+id/option_scroll_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_samsung_page"
+            app:text="@string/nav_scroll_list" />
+
+        <de.dlyt.yanndroid.samsung.drawer.OptionButton
+            android:id="@+id/option_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_samsung_settings"
+            app:text="@string/nav_settings" />
+
+    </de.dlyt.yanndroid.samsung.drawer.OptionGroup>
+
+</LinearLayout>
