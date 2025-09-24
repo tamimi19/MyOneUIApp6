@@ -9,7 +9,7 @@
     app:drawer_viewId="@id/drawer_content"
     app:toolbar_title="@string/app_name"
     app:toolbar_subtitle="@string/app_subtitle"
-    app:toolbar_expanded="false"
+    app:toolbar_expanded="true"
     app:toolbar_expandable="true">
 
     <!-- Drawer Content -->
