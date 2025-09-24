@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme - Uses SamsungTheme directly -->
-    <style name="SamsungTheme" parent="SamsungTheme">
+    <style name="ThemeName" parent="SamsungTheme">
         <!-- Only override colors if you want custom colors -->
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorSecondary">@color/secondary_color</item>
