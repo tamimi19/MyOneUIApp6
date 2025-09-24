@@ -24,6 +24,7 @@
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="8dp"
+            android:layout_gravity="start"
             android:text="Item Title" />
 
         <com.google.android.material.textview.MaterialTextView
