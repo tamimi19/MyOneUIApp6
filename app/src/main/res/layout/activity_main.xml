@@ -9,8 +9,8 @@
     app:drawer_viewId="@id/viewInDrawer"
     app:toolbar_title="@string/app_name"
     app:toolbar_subtitle="@string/app_subtitle"
-    app:toolbar_expanded="false"
-    app:toolbar_expandable="false">
+    app:toolbar_expanded="true"
+    app:toolbar_expandable="true">
 
     <include
         android:id="@+id/viewInDrawer"
