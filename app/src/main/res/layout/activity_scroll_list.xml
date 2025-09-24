@@ -8,7 +8,6 @@
     app:title="@string/scroll_list_title"
     app:subtitle="@string/scroll_list_subtitle"
     app:navigationIcon="@drawable/ic_back"
-    app:expanded="true"
     app:expandable="true">
 
     <androidx.recyclerview.widget.RecyclerView
