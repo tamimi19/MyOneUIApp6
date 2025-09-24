@@ -9,7 +9,7 @@ import androidx.core.widget.NestedScrollView;
 import de.dlyt.yanndroid.samsung.layout.DrawerLayout;
 import de.dlyt.yanndroid.samsung.drawer.OptionButton;
 import de.dlyt.yanndroid.samsung.drawer.OptionGroup;
-import de.dlyt.yanndroid.samsung.util.ThemeColor;
+
 
 import com.example.oneuiapp.utils.ThemeHelper;
 import com.example.oneuiapp.utils.LanguageHelper;
@@ -31,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // Setup crash handler first
         CrashHandler.setupCrashHandler(this);
-        
-        // Apply Samsung theme color before everything
-        new ThemeColor(this);
         
         // Apply language and theme before creating
         LanguageHelper.setLocale(this, LanguageHelper.getLanguage(this));
@@ -136,10 +133,6 @@ public class MainActivity extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen()) {
-            drawerLayout.setDrawerOpen(false, true);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 }
