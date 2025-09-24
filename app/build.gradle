@@ -32,7 +32,7 @@ android {
 
 dependencies {
     // OneUI Design Library
-    implementation 'com.github.Yanndroid:OneUi:2.4.1'
+    implementation 'com.github.Yanndroid:SamsungOneUi:2.4.1'
     
     // Android Components
     implementation 'androidx.appcompat:appcompat:1.7.1'
