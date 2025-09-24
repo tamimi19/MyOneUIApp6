@@ -9,7 +9,7 @@
     app:drawer_viewId="@id/drawer_content"
     app:toolbar_title="@string/app_name"
     app:toolbar_subtitle="@string/app_subtitle"
-    app:toolbar_expanded="false"
+    app:toolbar_expanded="true"
     app:toolbar_expandable="true">
 
     <!-- Drawer Content -->
@@ -17,8 +17,7 @@
         android:id="@+id/drawer_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="?android:attr/windowBackground">
+        android:orientation="vertical">
 
         <de.dlyt.yanndroid.samsung.drawer.OptionGroup
             android:id="@+id/option_group"
@@ -31,21 +30,21 @@
                 android:id="@+id/option_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
+                app:icon="@drawable/ic_samsung_info"
                 app:text="@string/nav_home" />
 
             <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/option_scroll_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
+                app:icon="@drawable/ic_samsung_page"
                 app:text="@string/nav_scroll_list" />
 
             <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/option_settings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
+                app:icon="@drawable/ic_samsung_settings"
                 app:text="@string/nav_settings" />
 
         </de.dlyt.yanndroid.samsung.drawer.OptionGroup>
@@ -162,9 +161,9 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is additional content to test the collapsing toolbar behavior. When you scroll down, the toolbar should collapse and show only the title on the side, similar to Samsung's OneUI design pattern."
+                        android:text="This is additional content to test the collapsing toolbar behavior. When you scroll down, the toolbar should collapse and show only the title on the side, similar to Samsung's OneUI design pattern. The library handles this automatically when using NestedScrollView."
                         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_marginBottom="600dp" />
+                        android:layout_marginBottom="800dp" />
 
                 </LinearLayout>
 
