@@ -1,7 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- OneUI Required Colors - These are the only colors needed for the library -->
-    <color name="primary_color">#ff0381fe</color>
-    <color name="secondary_color">#ff4ba5ff</color>
-    <color name="primary_dark_color">#ff0266cc</color>
+
+    <!--Main-->
+    <color name="primary_color">#ff0381fe</color> <!--color_primary-->
+    <color name="secondary_color">#ff3e91ff</color> <!--color_control_activated-->
+    <color name="primary_dark_color">#ff0072de</color> <!--color_primary_dark-->
+
+    <color name="sesl_background_floating">@color/sesl_white</color>
+    <color name="sesl_ripple_color">#1a000000</color>
+    <color name="sesl_error_color">#fff4511e</color>
+    <color name="sesl_control_color_normal">@color/control_color_normal</color>
+
+    <color name="sesl_control_normal_color">#cc8f8f8f</color>
+
+    <color name="background_color">#fff2f2f2</color>
+    <color name="item_background_color">#ffffffff</color>
+    <color name="item_color">@color/sesl_black</color>
+
+    <!--Colors-->
+    <color name="red">#ffD50000</color>
+    <color name="yellow">#ffFFD600</color>
+    <color name="green">#ff009808</color>
+    <color name="blue">#ff304FFE</color>
+    <color name="purple">#ffAA00FF</color>
+    <color name="orange">#ffFF6D00</color>
+    <color name="cyan">#ff00BFA5</color>
+    <color name="magenta">#ffC51162</color>
+    <color name="light_green">#ff64DD17</color>
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+
+
+    <!--Sesl-->
+    <color name="sesl_white">#fffafafa</color>
+    <color name="sesl_black">#ff252525</color>
+    <color name="divider_color">#ff979797</color>
+
+
+    <!--ProgressBar-->
+    <color name="sesl_loading_progress_color1">#ff06b485</color>
+    <color name="sesl_loading_progress_color2">?colorPrimary</color>
+    <color name="sesl_progress_control_color_normal">@color/sesl_control_color_normal</color>
+    <color name="progress_bar_background_color">#4d9c9c9c</color>
+
+
+    <!--Switch-->
+    <color name="sesl_switch_thumb_off_disabled_color">@color/white</color>
+    <color name="sesl_switch_thumb_off_disabled_stroke_color">#ffcbcbcb</color>
+    <color name="sesl_switch_thumb_on_disabled_color">@color/white</color>
+    <color name="sesl_switch_thumb_on_disabled_stroke_color">#ffcbcbcb</color>
+    <color name="sesl_switch_thumb_off_color">@color/white</color>
+    <color name="sesl_switch_thumb_off_stroke_color">#ffa1a1a1</color>
+    <color name="sesl_switch_thumb_on_color">@color/white</color>
+    <color name="sesl_switch_track_off_disabled_color">#00ffffff</color>
+    <color name="sesl_switch_track_off_disabled_stroke_color">#66888888</color>
+    <color name="sesl_switch_track_on_disabled_color">#668f8f8f</color>
+    <color name="sesl_switch_track_off_color">#00ffffff</color>
+    <color name="sesl_switch_track_off_stroke_color">#cc8f8f8f</color>
+
+
+    <!--SwitchBar-->
+    <color name="sesl_switchbar_off_background_color">#fffafafa</color>
+    <color name="sesl_switchbar_off_background_color_dark">#2bfafafa</color>
+    <color name="sesl_switchbar_off_background_color_light">#fffafafa</color>
+    <color name="sesl_switchbar_off_text_color_dark">#fffafafa</color>
+    <color name="sesl_switchbar_off_text_color_light">#ff252525</color>
+    <color name="sesl_switchbar_off_text_color">#ff252525</color>
+    <color name="sesl_switchbar_on_background_color">@color/sesl_control_color_normal</color>
+    <color name="sesl_action_bar_text_color_title_dark">#fffafafa</color>
+
+
+    <!--Seekbar-->
+    <color name="sesl_seekbar_control_color_normal">@color/sesl_control_color_normal</color>
+    <color name="sesl_seekbar_control_color_default">@color/sesl_control_color_normal</color>
+    <color name="sesl_seekbar_control_color_secondary">#ff7ab9cb</color>
+    <color name="sesl_seekbar_disable_color_activated_dark">#ff545454</color>
+    <color name="sesl_seekbar_disable_color_activated_light">#ffd2d2d2</color>
+    <color name="sesl_seekbar_overlap_color_activated">#ffff6021</color>
+    <color name="sesl_seekbar_overlap_color_default_dark">#ff673724</color>
+    <color name="sesl_seekbar_overlap_color_default_light">#fffcb69b</color>
+
+
+    <!--Spinner-->
+    <color name="sesl_menu_popup_background_color">#fffcfcfc</color>
+    <color name="sesl_menu_popup_background_stroke_color">#fffcfcfc</color>
+    <color name="sesl_spinner_dropdown_item_text_color_disabled">#66000000</color>
+    <color name="sesl_spinner_dropdown_item_text_color_normal">#ff000000</color>
+    <color name="sesl_spinner_icon_color_default">#ff3b3b3b</color>
+    <color name="sesl_spinner_icon_color_disabled">#663b3b3b</color>
+    <color name="sesl_spinner_item_text_color_disabled">#66252525</color>
+    <color name="sesl_spinner_item_text_color_normal">@color/sesl_black</color>
+
+
+    <!--Others-->
+    <color name="button_ripple_color">#e1e1e1</color>
+    <color name="button_background_color">#4dcccccc</color>
+    <color name="drawer_dim_color">#33000000</color>
+    <color name="item_divider_color">#ff979797</color>
+    <color name="drawer_icon_color">#ff676768</color>
+    <color name="badge_background_color">#fff56a0d</color>
+    <color name="splash_background">#ffffffff</color>
+    <color name="sesl_scrollbar_handle_tint">#ffdedede</color>
+    <color name="sesl_list_subheader_text_color">#ff8c8c8c</color>
+
+
+    <!--ColorPicker-->
+    <color name="setting_bg_color">#fffcfcfc</color>
+    <color name="setting_pressed_color">#14000000</color>
+    <color name="setting_color_picker_adaptive_outline">#ffd9d9d9</color>
+    <color name="setting_color_picker_swatch_selected_stroke_color">#4cffffff</color>
+    <color name="setting_color_picker_color_value_text">#ff252525</color>
+    <color name="setting_ripple_color">#29000000</color>
+    <color name="setting_brush_picker_layout_divider_shape_color">#ff979797</color>
+    <color name="setting_color_picker_mode_bg_selected_color">#cc717171</color>
+    <color name="dialog_action_ripple">#1a000000</color>
+    <color name="setting_color_picker_mode_text_selected_color">#ff252525</color>
+    <color name="setting_color_picker_mode_text_unselected_color">#ff858585</color>
+    <color name="background_color_white">@color/base_background_color_white</color>
+    <color name="base_background_color_white">#fffcfcfc</color>
+
 </resources>
