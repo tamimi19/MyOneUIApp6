@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- OneUI Colors -->
+    <!-- OneUI Required Colors - These are the only colors needed for the library -->
     <color name="primary_color">#ff0381fe</color>
     <color name="secondary_color">#ff4ba5ff</color>
     <color name="primary_dark_color">#ff0266cc</color>
-    
-    <!-- Background Colors -->
-    <color name="background_color">#ffffffff</color>
-    <color name="surface_color">#fffafafa</color>
-    
-    <!-- Text Colors -->
-    <color name="text_primary">#ff000000</color>
-    <color name="text_secondary">#ff666666</color>
-    
-    <!-- Card Colors -->
-    <color name="card_background">#ffffffff</color>
-    
-    <!-- Divider -->
-    <color name="divider_color">#ffe0e0e0</color>
-    
-    <!-- Status Bar -->
-    <color name="status_bar_color">@color/primary_color</color>
-    
-    <!-- Navigation Bar -->
-    <color name="navigation_bar_color">#ffffffff</color>
 </resources>
