@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/nav_home"
-                app:icon="@drawable/ic_samsung_info" />
+                app:icon="@drawable/ic_samsung_home" />
 
             <de.dlyt.yanndroid.samsung.drawer.Divider
                 android:layout_width="match_parent"
@@ -63,10 +63,9 @@
     </LinearLayout>
 
     <!-- Main Content -->
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,6 +119,6 @@
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </de.dlyt.yanndroid.samsung.layout.DrawerLayout>
