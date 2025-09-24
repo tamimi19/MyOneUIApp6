@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
+import com.google.android.material.appbar.AppBarLayout;
 
 import com.example.oneuiapp.adapters.ScrollListAdapter;
 import com.example.oneuiapp.utils.ThemeHelper;
@@ -19,9 +20,14 @@ import java.util.List;
 public class ScrollListActivity extends AppCompatActivity {
     
     private ToolbarLayout toolbarLayout;
+    private AppBarLayout appBarLayout;
     private RecyclerView recyclerView;
     private ScrollListAdapter adapter;
     private List<String> itemList;
+    
+    // Variables to control scroll behavior
+    private boolean isToolbarCollapsed = false;
+    private boolean snapToCollapsed = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +40,14 @@ public class ScrollListActivity extends AppCompatActivity {
         
         initializeViews();
         setupToolbar();
+        setupScrollBehavior();
         setupRecyclerView();
         generateScrollItems();
     }
     
     private void initializeViews() {
         toolbarLayout = findViewById(R.id.toolbar_layout);
+        appBarLayout = findViewById(R.id.app_bar);
         recyclerView = findViewById(R.id.recycler_view);
     }
     
@@ -58,12 +66,65 @@ public class ScrollListActivity extends AppCompatActivity {
         });
     }
     
+    private void setupScrollBehavior() {
+        if (appBarLayout != null) {
+            appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                    int totalScrollRange = appBarLayout.getTotalScrollRange();
+                    
+                    // Calculate collapse ratio (0 = fully expanded, 1 = fully collapsed)
+                    float collapseRatio = (float) Math.abs(verticalOffset) / (float) totalScrollRange;
+                    
+                    // Check if toolbar is approaching collapsed state (80% collapsed)
+                    if (collapseRatio >= 0.8f && !isToolbarCollapsed && !snapToCollapsed) {
+                        snapToCollapsed = true;
+                        isToolbarCollapsed = true;
+                        
+                        // Temporarily disable nested scrolling to prevent over-scroll
+                        recyclerView.setNestedScrollingEnabled(false);
+                        
+                        // Snap to collapsed state
+                        appBarLayout.setExpanded(false, true);
+                        
+                        // Re-enable scrolling after animation
+                        recyclerView.postDelayed(() -> {
+                            recyclerView.setNestedScrollingEnabled(true);
+                            snapToCollapsed = false;
+                        }, 300);
+                        
+                    } else if (collapseRatio < 0.1f) {
+                        // Toolbar is expanded
+                        isToolbarCollapsed = false;
+                    }
+                }
+            });
+        }
+    }
+    
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         
         // Enable nested scrolling for toolbar collapse
         recyclerView.setNestedScrollingEnabled(true);
+        
+        // Add scroll listener for additional control
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                
+                // If scrolling up and toolbar is collapsed, allow expansion only with deliberate scroll
+                if (dy < 0 && isToolbarCollapsed) {
+                    // Only expand if scroll is significant (more than 50 pixels)
+                    if (Math.abs(dy) > 50) {
+                        appBarLayout.setExpanded(true, true);
+                        isToolbarCollapsed = false;
+                    }
+                }
+            }
+        });
         
         itemList = new ArrayList<>();
         adapter = new ScrollListAdapter(itemList);
