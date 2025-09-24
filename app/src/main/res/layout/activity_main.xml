@@ -9,7 +9,7 @@
     app:drawer_viewId="@id/drawer_content"
     app:toolbar_title="@string/app_name"
     app:toolbar_subtitle="@string/app_subtitle"
-    app:toolbar_expanded="true"
+    app:toolbar_expanded="false"
     app:toolbar_expandable="true">
 
     <!-- Drawer Content -->
@@ -18,44 +18,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:background="?android:attr/windowBackground">
 
         <de.dlyt.yanndroid.samsung.drawer.OptionGroup
             android:id="@+id/option_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:selectedOptionButton="@id/option_home">
 
             <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/option_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
                 app:text="@string/nav_home" />
-
-            <de.dlyt.yanndroid.samsung.drawer.Divider
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp" />
 
             <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/option_scroll_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
                 app:text="@string/nav_scroll_list" />
-
-            <de.dlyt.yanndroid.samsung.drawer.Divider
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp" />
 
             <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/option_settings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
                 app:text="@string/nav_settings" />
 
         </de.dlyt.yanndroid.samsung.drawer.OptionGroup>
@@ -64,6 +54,7 @@
 
     <!-- Main Content -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -118,7 +109,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Additional content for testing scroll functionality -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -143,8 +133,38 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="• Pull-down gesture for easy navigation\n• Dark and light theme support\n• Arabic and English languages\n• Samsung OneUI design patterns"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Additional Content"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                        android:layout_marginBottom="8dp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="This is additional content to test the collapsing toolbar behavior. When you scroll down, the toolbar should collapse and show only the title on the side, similar to Samsung's OneUI design pattern."
                         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_marginBottom="200dp" />
+                        android:layout_marginBottom="600dp" />
 
                 </LinearLayout>
 
