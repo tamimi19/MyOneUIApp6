@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 
 import de.dlyt.yanndroid.samsung.layout.DrawerLayout;
 import de.dlyt.yanndroid.samsung.drawer.OptionButton;
 import de.dlyt.yanndroid.samsung.drawer.OptionGroup;
-
 
 import com.example.oneuiapp.utils.ThemeHelper;
 import com.example.oneuiapp.utils.LanguageHelper;
@@ -22,10 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private OptionButton homeOption;
     private OptionButton scrollListOption;
     private OptionButton settingsOption;
-    private NestedScrollView mainScrollView;
-    
-    private boolean isToolbarCollapsed = false;
-    private static final int SCROLL_THRESHOLD = 200; // Pixels to trigger collapse
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         
         initializeViews();
         setupDrawerOptions();
-        setupScrollBehavior();
     }
     
     private void initializeViews() {
@@ -50,16 +43,9 @@ public class MainActivity extends AppCompatActivity {
         homeOption = findViewById(R.id.option_home);
         scrollListOption = findViewById(R.id.option_scroll_list);
         settingsOption = findViewById(R.id.option_settings);
-        mainScrollView = findViewById(R.id.main_scroll_view);
-        
-        // Set toolbar initial state
-        drawerLayout.setToolbarExpanded(false, false);
     }
     
     private void setupDrawerOptions() {
-        // Remove icon assignments as they're causing build errors
-        // The Samsung OneUI library will handle styling automatically
-        
         // Set default selection
         optionGroup.setSelectedOptionButton(homeOption);
         
@@ -71,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         
-        // Setup drawer icon click listener
+        // Setup drawer icon click listener for closing drawer
         drawerLayout.setDrawerIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,28 +66,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     
-    private void setupScrollBehavior() {
-        mainScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                handleToolbarCollapse(scrollY);
-            }
-        });
-    }
-    
-    private void handleToolbarCollapse(int scrollY) {
-        if (scrollY > SCROLL_THRESHOLD && !isToolbarCollapsed) {
-            // Collapse toolbar - show title on side
-            drawerLayout.setToolbarExpanded(false, true);
-            isToolbarCollapsed = true;
-        } else if (scrollY <= SCROLL_THRESHOLD && isToolbarCollapsed) {
-            // Expand toolbar - show full header
-            drawerLayout.setToolbarExpanded(false, true);
-            isToolbarCollapsed = false;
-        }
-    }
-    
     private void handleDrawerSelection(int id) {
+        // Close drawer first
         drawerLayout.setDrawerOpen(false, true);
         
         if (id == R.id.option_home) {
