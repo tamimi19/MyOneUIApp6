@@ -16,15 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/welcome_message"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            android:textAppearance="@style/TextAppearance.Material.HeadlineMedium"
             android:layout_marginBottom="16dp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/welcome_description"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:layout_marginBottom="32dp" />
+            android:textAppearance="@style/TextAppearance.Material.BodyLarge"
+            android:layout_marginBottom="2dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -43,14 +43,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/card_title_features"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textAppearance="@style/TextAppearance.Material.TitleMedium"
                     android:layout_marginBottom="8dp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/card_description_features"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+                    android:textAppearance="@style/TextAppearance.Material.BodyMedium" />
 
             </LinearLayout>
 
@@ -73,14 +73,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Key Features"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textAppearance="@style/TextAppearance.Material.TitleMedium"
                     android:layout_marginBottom="8dp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="• Pull-down gesture for easy navigation\n• Dark and light theme support\n• Arabic and English languages\n• Samsung OneUI design patterns"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+                    android:textAppearance="@style/TextAppearance.Material.BodyMedium" />
 
             </LinearLayout>
 
@@ -103,14 +103,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Additional Content"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textAppearance="@style/TextAppearance.Material.TitleMedium"
                     android:layout_marginBottom="8dp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="This is additional content to test the collapsing toolbar behavior. When you scroll down, the toolbar should collapse and show only the title on the side, similar to Samsung's OneUI design pattern. The library handles this automatically when using NestedScrollView."
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textAppearance="@style/TextAppearance.Material.BodyMedium"
                     android:layout_marginBottom="800dp" />
 
             </LinearLayout>
