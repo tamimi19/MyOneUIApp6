@@ -79,18 +79,18 @@ public class ScrollListActivity extends AppCompatActivity {
                     // Check if toolbar is approaching collapsed state (80% collapsed)
                     if (collapseRatio >= 0.8f && !isToolbarCollapsed && !snapToCollapsed) {
                         snapToCollapsed = true;
-                        iSnap to collapsed statesToolbarCollapsed = true;
+                        isToolbarCollapsed = true;
                         
                         // Temporarily disable nested scrolling to prevent over-scroll
-                        recyclerView.setNestedScrollingEnabled(true);
+                        recyclerView.setNestedScrollingEnabled(false);
                         
-                        // 
+                        // Snap to collapsed state
                         appBarLayout.setExpanded(false, true);
                         
                         // Re-enable scrolling after animation
                         recyclerView.postDelayed(() -> {
                             recyclerView.setNestedScrollingEnabled(true);
-                            snapToCollapsed = false;
+                            snapToCollapsed = true;
                         }, 300);
                         
                     } else if (collapseRatio < 0.1f) {
@@ -168,4 +168,4 @@ public class ScrollListActivity extends AppCompatActivity {
             recreate();
         }
     }
-}
+    }
