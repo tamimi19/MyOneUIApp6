@@ -47,7 +47,7 @@ public class ScrollListActivity extends AppCompatActivity {
         toolbarLayout.setTitle(getString(R.string.scroll_list_title));
         toolbarLayout.setSubtitle(getString(R.string.scroll_list_subtitle));
         // Set toolbar to collapsed state by default (Samsung OneUI behavior)
-        toolbarLayout.setExpandable(true);
+        toolbarLayout.setExpandable(false);
         toolbarLayout.setExpanded(true, false);
         
         // Enable action bar
