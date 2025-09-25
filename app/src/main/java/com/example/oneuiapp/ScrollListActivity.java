@@ -187,4 +187,4 @@ public class ScrollListActivity extends AppCompatActivity {
         super.onDestroy();
         cancelSnapRunnable();
     }
-}
+                    }
