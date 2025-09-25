@@ -40,12 +40,6 @@ android {
 dependencies {
     // OneUI Design Library with exclusions to prevent conflicts
     implementation('com.github.Yanndroid:SamsungOneUi:1.2.2') {
-        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
-        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
-        exclude group: 'androidx.appcompat'
-        exclude group: 'com.google.android.material'
-        exclude group: 'androidx.core'
-        exclude group: 'androidx.fragment'
     }
     
     // Android Components - using compatible versions
