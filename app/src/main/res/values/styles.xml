@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Dark theme application theme -->
+    <!-- Base application theme -->
     <style name="ThemeName" parent="SamsungTheme">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorSecondary">@color/secondary_color</item>
