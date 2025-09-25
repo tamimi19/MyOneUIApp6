@@ -6,22 +6,22 @@
     <color name="primary_dark_color">#ff0266cc</color>
     
     <!-- Background Colors -->
-    <color name="background_color">#ff000000</color>
-    <color name="surface_color">#ff1a1a1a</color>
+    <color name="background_color">#ffffffff</color>
+    <color name="surface_color">#fffafafa</color>
     
     <!-- Text Colors -->
-    <color name="text_primary">#ffffffff</color>
-    <color name="text_secondary">#ffb3b3b3</color>
+    <color name="text_primary">#ff000000</color>
+    <color name="text_secondary">#ff666666</color>
     
     <!-- Card Colors -->
-    <color name="card_background">#ff2c2c2c</color>
+    <color name="card_background">#ffffffff</color>
     
     <!-- Divider -->
-    <color name="divider_color">#ff404040</color>
+    <color name="divider_color">#ffe0e0e0</color>
     
     <!-- Status Bar -->
-    <color name="status_bar_color">#ff000000</color>
+    <color name="status_bar_color">@color/primary_color</color>
     
     <!-- Navigation Bar -->
-    <color name="navigation_bar_color">#ff000000</color>
+    <color name="navigation_bar_color">#ffffffff</color>
 </resources>
