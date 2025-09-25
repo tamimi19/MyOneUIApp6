@@ -79,12 +79,12 @@ public class ScrollListActivity extends AppCompatActivity {
                     // Check if toolbar is approaching collapsed state (80% collapsed)
                     if (collapseRatio >= 0.8f && !isToolbarCollapsed && !snapToCollapsed) {
                         snapToCollapsed = true;
-                        isToolbarCollapsed = true;
+                        iSnap to collapsed statesToolbarCollapsed = true;
                         
                         // Temporarily disable nested scrolling to prevent over-scroll
-                        recyclerView.setNestedScrollingEnabled(false);
+                        recyclerView.setNestedScrollingEnabled(true);
                         
-                        // Snap to collapsed state
+                        // 
                         appBarLayout.setExpanded(false, true);
                         
                         // Re-enable scrolling after animation
