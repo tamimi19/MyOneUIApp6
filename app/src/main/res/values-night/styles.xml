@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Dark theme application theme -->
-    <style name="ThemeName" parent="OneUITheme">
+    <style name="ThemeName" parent="SamsungTheme">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorSecondary">@color/secondary_color</item>
         <item name="colorPrimaryDark">@color/primary_dark_color</item>
