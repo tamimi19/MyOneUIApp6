@@ -23,10 +23,6 @@ public class ScrollListActivity extends AppCompatActivity {
     private ScrollListAdapter adapter;
     private List<String> itemList;
     
-    // Variables to control scroll behavior
-    private boolean isToolbarCollapsed = false;
-    private boolean snapToCollapsed = false;
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Apply language and theme before creating
@@ -50,10 +46,11 @@ public class ScrollListActivity extends AppCompatActivity {
     private void setupToolbar() {
         toolbarLayout.setTitle(getString(R.string.scroll_list_title));
         toolbarLayout.setSubtitle(getString(R.string.scroll_list_subtitle));
+        toolbarLayout.setNavigationIcon(getDrawable(R.drawable.ic_samsung_back));
         
-        // Make toolbar expandable with default expanded state
+        // Set toolbar to collapsed state by default (Samsung OneUI behavior)
         toolbarLayout.setExpandable(true);
-        toolbarLayout.setExpanded(true, false);
+        toolbarLayout.setExpanded(false, false);
         
         // Enable action bar
         setSupportActionBar(toolbarLayout.getToolbar());
@@ -69,42 +66,8 @@ public class ScrollListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         
-        // Enable nested scrolling for toolbar collapse behavior
+        // Enable nested scrolling for proper toolbar behavior
         recyclerView.setNestedScrollingEnabled(true);
-        
-        // Add scroll listener for enhanced control
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int scrollDy = 0;
-            private static final int SCROLL_THRESHOLD = 20;
-            
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                
-                scrollDy += dy;
-                
-                // Scroll down - collapse toolbar
-                if (dy > SCROLL_THRESHOLD && !isToolbarCollapsed) {
-                    toolbarLayout.setExpanded(false, true);
-                    isToolbarCollapsed = true;
-                }
-                // Scroll up - expand toolbar  
-                else if (dy < -SCROLL_THRESHOLD && isToolbarCollapsed) {
-                    toolbarLayout.setExpanded(true, true);
-                    isToolbarCollapsed = false;
-                }
-            }
-            
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                
-                // Reset scroll accumulator when scroll stops
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    scrollDy = 0;
-                }
-            }
-        });
         
         itemList = new ArrayList<>();
         adapter = new ScrollListAdapter(itemList);
