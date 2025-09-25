@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<de.dlyt.yanndroid.oneui.widget.ToolbarLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:title="@string/scroll_list_title"
-    app:subtitle="@string/scroll_list_subtitle"
-    app:navigationIcon="@drawable/ic_samsung_back"
-    app:expandable="true"
-    app:expanded="false">
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/SamsungTheme">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorPrimary"
+            app:statusBarScrim="?attr/colorPrimaryVariant">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_samsung_back"
+                app:title="@string/scroll_list_title"
+                app:subtitle="@string/scroll_list_subtitle" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:overScrollMode="ifContentScrolls">
+        android:overScrollMode="ifContentScrolls"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -27,4 +49,4 @@
 
     </androidx.core.widget.NestedScrollView>
 
-</de.dlyt.yanndroid.oneui.widget.ToolbarLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
