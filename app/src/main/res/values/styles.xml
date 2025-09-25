@@ -7,11 +7,11 @@
         <item name="colorPrimaryDark">@color/primary_dark_color</item>
         <item name="android:statusBarColor">@color/status_bar_color</item>
         <item name="android:navigationBarColor">@color/navigation_bar_color</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
-    <!-- Dark card styles -->
+    <!-- Card styles -->
     <style name="CardViewStyle" parent="CardView">
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">@dimen/card_elevation</item>
@@ -19,7 +19,7 @@
         <item name="android:layout_margin">@dimen/card_margin</item>
     </style>
 
-    <!-- Dark text styles -->
+    <!-- Text styles -->
     <style name="TextStyle" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/text_primary</item>
     </style>
@@ -38,7 +38,7 @@
         <item name="android:textSize">@dimen/text_size_normal</item>
     </style>
 
-    <!-- Dark button styles -->
+    <!-- Button styles -->
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/primary_color</item>
         <item name="android:textColor">@android:color/white</item>
@@ -51,14 +51,14 @@
         <item name="cornerRadius">@dimen/card_corner_radius</item>
     </style>
 
-    <!-- Dark toolbar styles -->
+    <!-- Toolbar styles -->
     <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="android:minHeight">@dimen/toolbar_height</item>
         <item name="titleTextColor">@color/text_primary</item>
         <item name="subtitleTextColor">@color/text_secondary</item>
     </style>
 
-    <!-- Dark OneUI specific styles -->
+    <!-- OneUI specific styles -->
     <style name="OneUIDrawerStyle">
         <item name="android:background">@color/surface_color</item>
         <item name="android:padding">@dimen/oneui_option_padding</item>
