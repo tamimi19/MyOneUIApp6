@@ -26,8 +26,8 @@ public class ScrollListActivity extends AppCompatActivity {
     private List<String> itemList;
     
     // Variables to control scroll behavior
-    private boolean isToolbarCollapsed = false;
-    private boolean snapToCollapsed = false;
+    private boolean isToolbarCollapsed = true;
+    private boolean snapToCollapsed = true;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
