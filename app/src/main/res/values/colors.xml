@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- OneUI Dark Colors -->
+    <!-- OneUI Colors -->
     <color name="primary_color">#ff0381fe</color>
     <color name="secondary_color">#ff4ba5ff</color>
     <color name="primary_dark_color">#ff0266cc</color>
