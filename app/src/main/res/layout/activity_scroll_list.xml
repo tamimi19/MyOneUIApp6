@@ -2,20 +2,29 @@
 <de.dlyt.yanndroid.samsung.layout.ToolbarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:title="@string/scroll_list_title"
     app:subtitle="@string/scroll_list_subtitle"
-    app:navigationIcon="@drawable/ic_back"
+    app:navigationIcon="@drawable/ic_samsung_back"
     app:expandable="true"
-    app:expanded="true">
+    app:expanded="false">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true"
-        android:padding="16dp"
-        android:clipToPadding="false" />
+        android:fillViewport="true"
+        android:overScrollMode="ifContentScrolls">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:padding="16dp"
+            android:clipToPadding="false" />
+
+    </androidx.core.widget.NestedScrollView>
 
 </de.dlyt.yanndroid.samsung.layout.ToolbarLayout>
