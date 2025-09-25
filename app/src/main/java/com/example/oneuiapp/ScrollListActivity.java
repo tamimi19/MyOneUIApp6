@@ -1,11 +1,15 @@
 package com.example.oneuiapp;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.widget.NestedScrollView;
 
 import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 
@@ -20,12 +24,15 @@ public class ScrollListActivity extends AppCompatActivity {
     
     private ToolbarLayout toolbarLayout;
     private RecyclerView recyclerView;
+    private NestedScrollView nestedScrollView;
     private ScrollListAdapter adapter;
     private List<String> itemList;
+    private Handler snapHandler = new Handler();
+    private Runnable snapRunnable;
+    private boolean isUserScrolling = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Apply language and theme before creating
         LanguageHelper.setLocale(this, LanguageHelper.getLanguage(this));
         ThemeHelper.applyTheme(this);
         
@@ -35,37 +42,82 @@ public class ScrollListActivity extends AppCompatActivity {
         initializeViews();
         setupToolbar();
         setupRecyclerView();
+        setupSnapBehavior();
         generateScrollItems();
     }
     
     private void initializeViews() {
         toolbarLayout = findViewById(R.id.toolbar_layout);
         recyclerView = findViewById(R.id.recycler_view);
+        nestedScrollView = (NestedScrollView) recyclerView.getParent();
     }
     
     private void setupToolbar() {
         toolbarLayout.setTitle(getString(R.string.scroll_list_title));
         toolbarLayout.setSubtitle(getString(R.string.scroll_list_subtitle));
         
-        // Set toolbar to collapsed state by default for Samsung OneUI behavior
         toolbarLayout.setExpandable(true);
         toolbarLayout.setExpanded(false, false);
         
-        // Enable action bar
         setSupportActionBar(toolbarLayout.getToolbar());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        // Setup navigation click listener
-        toolbarLayout.setNavigationOnClickListener(v -> {
-            onBackPressed();
-        });
+        toolbarLayout.setNavigationOnClickListener(v -> onBackPressed());
+    }
+    
+    private void setupSnapBehavior() {
+        if (nestedScrollView != null) {
+            nestedScrollView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            isUserScrolling = true;
+                            if (snapRunnable != null) {
+                                snapHandler.removeCallbacks(snapRunnable);
+                            }
+                            break;
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_CANCEL:
+                            isUserScrolling = false;
+                            scheduleSnapToCollapsed();
+                            break;
+                    }
+                    return false;
+                }
+            });
+            
+            nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    if (scrollY > 0 && !isUserScrolling) {
+                        scheduleSnapToCollapsed();
+                    }
+                }
+            });
+        }
+    }
+    
+    private void scheduleSnapToCollapsed() {
+        if (snapRunnable != null) {
+            snapHandler.removeCallbacks(snapRunnable);
+        }
+        
+        snapRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (!isUserScrolling) {
+                    toolbarLayout.setExpanded(false, true);
+                }
+            }
+        };
+        
+        snapHandler.postDelayed(snapRunnable, 150);
     }
     
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        
-        // Disable nested scrolling since we're using NestedScrollView as parent
         recyclerView.setNestedScrollingEnabled(false);
         
         itemList = new ArrayList<>();
@@ -74,7 +126,6 @@ public class ScrollListActivity extends AppCompatActivity {
     }
     
     private void generateScrollItems() {
-        // Generate 200 items as requested
         for (int i = 1; i <= 200; i++) {
             String itemText;
             if (LanguageHelper.getLanguage(this).equals("ar")) {
@@ -105,9 +156,16 @@ public class ScrollListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Refresh UI in case language or theme changed
         if (ThemeHelper.hasThemeChanged(this) || LanguageHelper.hasLanguageChanged(this)) {
             recreate();
+        }
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (snapRunnable != null) {
+            snapHandler.removeCallbacks(snapRunnable);
         }
     }
 }
