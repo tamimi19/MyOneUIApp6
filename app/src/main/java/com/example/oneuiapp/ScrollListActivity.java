@@ -55,7 +55,6 @@ public class ScrollListActivity extends AppCompatActivity {
     private void setupToolbar() {
         toolbarLayout.setTitle(getString(R.string.scroll_list_title));
         toolbarLayout.setSubtitle(getString(R.string.scroll_list_subtitle));
-        toolbarLayout.setNavigationIcon(getDrawable(R.drawable.ic_samsung_back));
         
         // Set toolbar to collapsed state by default
         toolbarLayout.setExpandable(true);
