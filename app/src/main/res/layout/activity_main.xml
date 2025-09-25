@@ -5,7 +5,6 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:drawer_icon="@drawable/ic_samsung_drawer"
     app:drawer_viewId="@id/viewInDrawer"
     app:toolbar_title="@string/app_name"
     app:toolbar_subtitle="@string/app_subtitle"
