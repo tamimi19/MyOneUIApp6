@@ -2,6 +2,8 @@ package com.example.oneuiapp;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +25,12 @@ public class ScrollListActivity extends AppCompatActivity {
     private ScrollListAdapter adapter;
     private List<String> itemList;
     
+    // Variables for custom over-scroll behavior
+    private boolean isAtTop = true;
+    private boolean hasStoppedAtCollapsed = false;
+    private float lastTouchY = 0;
+    private boolean isTracking = false;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Apply language and theme before creating
@@ -36,6 +44,7 @@ public class ScrollListActivity extends AppCompatActivity {
         setupToolbar();
         setupRecyclerView();
         generateScrollItems();
+        setupCustomScrollBehavior();
     }
     
     private void initializeViews() {
@@ -46,9 +55,11 @@ public class ScrollListActivity extends AppCompatActivity {
     private void setupToolbar() {
         toolbarLayout.setTitle(getString(R.string.scroll_list_title));
         toolbarLayout.setSubtitle(getString(R.string.scroll_list_subtitle));
-        // Set toolbar to collapsed state by default (Samsung OneUI behavior)
-        toolbarLayout.setExpandable(false);
-        toolbarLayout.setExpanded(true, false);
+        toolbarLayout.setNavigationIcon(getDrawable(R.drawable.ic_samsung_back));
+        
+        // Set toolbar to collapsed state by default
+        toolbarLayout.setExpandable(true);
+        toolbarLayout.setExpanded(false, false);
         
         // Enable action bar
         setSupportActionBar(toolbarLayout.getToolbar());
@@ -64,12 +75,96 @@ public class ScrollListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         
-        // Enable nested scrolling for proper toolbar behavior
-        recyclerView.setNestedScrollingEnabled(true);
+        // Initially disable nested scrolling to control behavior manually
+        recyclerView.setNestedScrollingEnabled(false);
+        
+        // Add scroll listener to track position
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+                View firstVisibleView = layoutManager.findViewByPosition(firstVisiblePosition);
+                
+                // Check if we're at the top
+                isAtTop = (firstVisiblePosition == 0 && 
+                          (firstVisibleView == null || firstVisibleView.getTop() >= 0));
+                
+                // If scrolling down and not at top, collapse toolbar
+                if (dy > 0 && !isAtTop) {
+                    toolbarLayout.setExpanded(false, true);
+                    hasStoppedAtCollapsed = false;
+                    recyclerView.setNestedScrollingEnabled(true);
+                }
+            }
+            
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // Reset when scroll stops
+                    if (isAtTop) {
+                        recyclerView.setNestedScrollingEnabled(false);
+                    }
+                }
+            }
+        });
         
         itemList = new ArrayList<>();
         adapter = new ScrollListAdapter(itemList);
         recyclerView.setAdapter(adapter);
+    }
+    
+    private void setupCustomScrollBehavior() {
+        recyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        lastTouchY = event.getY();
+                        isTracking = true;
+                        break;
+                        
+                    case MotionEvent.ACTION_MOVE:
+                        if (isTracking && isAtTop) {
+                            float currentY = event.getY();
+                            float deltaY = currentY - lastTouchY;
+                            
+                            // If pulling down while at top
+                            if (deltaY > 0) {
+                                if (!hasStoppedAtCollapsed) {
+                                    // First pull down - stop at collapsed state
+                                    hasStoppedAtCollapsed = true;
+                                    toolbarLayout.setExpanded(false, false);
+                                    return true; // Consume the event to prevent default scroll
+                                } else {
+                                    // Second pull down - allow expansion
+                                    if (deltaY > 100) { // Threshold for expansion
+                                        toolbarLayout.setExpanded(true, true);
+                                        recyclerView.setNestedScrollingEnabled(true);
+                                        hasStoppedAtCollapsed = false;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                        
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        isTracking = false;
+                        
+                        // If we stopped at top in collapsed state, keep it collapsed
+                        if (isAtTop && hasStoppedAtCollapsed) {
+                            toolbarLayout.setExpanded(false, false);
+                        }
+                        break;
+                }
+                return false; // Allow normal touch handling for other cases
+            }
+        });
     }
     
     private void generateScrollItems() {
