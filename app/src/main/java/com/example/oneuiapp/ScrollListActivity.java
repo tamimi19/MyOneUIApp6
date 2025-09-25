@@ -26,8 +26,8 @@ public class ScrollListActivity extends AppCompatActivity {
     private List<String> itemList;
     
     // Variables to control scroll behavior
-    private boolean isToolbarCollapsed = true;
-    private boolean snapToCollapsed = true;
+    private boolean isToolbarCollapsed = false;
+    private boolean snapToCollapsed = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class ScrollListActivity extends AppCompatActivity {
                         // Re-enable scrolling after animation
                         recyclerView.postDelayed(() -> {
                             recyclerView.setNestedScrollingEnabled(true);
-                            snapToCollapsed = true;
+                            snapToCollapsed = false;
                         }, 300);
                         
                     } else if (collapseRatio < 0.1f) {
@@ -168,4 +168,4 @@ public class ScrollListActivity extends AppCompatActivity {
             recreate();
         }
     }
-    }
+}
