@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- OneUI Colors -->
+    <!-- OneUI Dark Colors -->
     <color name="primary_color">#ff0381fe</color>
     <color name="secondary_color">#ff4ba5ff</color>
     <color name="primary_dark_color">#ff0266cc</color>
     
     <!-- Background Colors -->
-    <color name="background_color">#ffffffff</color>
-    <color name="surface_color">#fffafafa</color>
+    <color name="background_color">#ff000000</color>
+    <color name="surface_color">#ff1a1a1a</color>
     
     <!-- Text Colors -->
-    <color name="text_primary">#ff000000</color>
-    <color name="text_secondary">#ff666666</color>
+    <color name="text_primary">#ffffffff</color>
+    <color name="text_secondary">#ffb3b3b3</color>
     
     <!-- Card Colors -->
-    <color name="card_background">#ffffffff</color>
+    <color name="card_background">#ff2c2c2c</color>
     
     <!-- Divider -->
-    <color name="divider_color">#ffe0e0e0</color>
+    <color name="divider_color">#ff404040</color>
     
     <!-- Status Bar -->
-    <color name="status_bar_color">@color/primary_color</color>
+    <color name="status_bar_color">#ff000000</color>
     
     <!-- Navigation Bar -->
-    <color name="navigation_bar_color">#ffffffff</color>
+    <color name="navigation_bar_color">#ff000000</color>
 </resources>
