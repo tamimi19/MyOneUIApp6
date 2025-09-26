@@ -2,6 +2,7 @@ package com.example.oneuiapp;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,42 +53,44 @@ public class ScrollListActivity extends AppCompatActivity {
      * إعداد شريط الأدوات والعنوان
      */
     private void setupToolbar() {
-        // تعيين العنوان والعنوان الفرعي
-        toolbarLayout.setTitle(getString(R.string.scroll_list_title));
-        toolbarLayout.setSubtitle(getString(R.string.scroll_list_subtitle));
-
-        // تعيين شريط الأدوات في الحالة المطوية افتراضياً للحصول على سلوك Samsung OneUI
-        toolbarLayout.setExpandable(true);
-        toolbarLayout.setExpanded(false, false);
-
-        // تفعيل شريط الأدوات
-        setSupportActionBar(toolbarLayout.getToolbar());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // إعداد مستمع النقر على زر الرجوع
-        toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
+        if (toolbarLayout != null) {
+            // تفعيل شريط الأدوات
+            setSupportActionBar(toolbarLayout.getToolbar());
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
-        });
+
+            // تعيين شريط الأدوات في الحالة المطوية افتراضياً للحصول على سلوك Samsung OneUI
+            toolbarLayout.setExpandable(true);
+            toolbarLayout.setExpanded(false, false);
+
+            // إعداد مستمع النقر على زر الرجوع
+            toolbarLayout.setOnNavigationClickListener(new ToolbarLayout.OnNavigationClickListener() {
+                @Override
+                public void onClick() {
+                    onBackPressed();
+                }
+            });
+        }
     }
 
     /**
      * إعداد قائمة العناصر القابلة للتمرير
      */
     private void setupRecyclerView() {
-        // تعيين مخطط خطي للقائمة
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        
-        // تعطيل التمرير المتداخل لأننا نستخدم NestedScrollView كحاوي رئيسي
-        recyclerView.setNestedScrollingEnabled(false);
-        
-        // إنشاء قائمة العناصر والمحول
-        itemList = new ArrayList<>();
-        adapter = new ScrollListAdapter(itemList);
-        recyclerView.setAdapter(adapter);
+        if (recyclerView != null) {
+            // تعيين مخطط خطي للقائمة
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setHasFixedSize(true);
+            
+            // تعطيل التمرير المتداخل لأننا نستخدم NestedScrollView كحاوي رئيسي
+            recyclerView.setNestedScrollingEnabled(false);
+            
+            // إنشاء قائمة العناصر والمحول
+            itemList = new ArrayList<>();
+            adapter = new ScrollListAdapter(itemList);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     /**
@@ -106,7 +109,9 @@ public class ScrollListActivity extends AppCompatActivity {
             itemList.add(itemText);
         }
         // إشعار المحول بتحديث البيانات
-        adapter.notifyDataSetChanged();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
