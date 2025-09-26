@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-// استيراد الحزمة الجديدة لشريط الأدوات
 import de.dlyt.yanndroid.oneui.layout.ToolbarLayout;
 
 import com.example.oneuiapp.adapters.ScrollListAdapter;
@@ -18,7 +17,6 @@ import java.util.List;
 
 public class ScrollListActivity extends AppCompatActivity {
     
-    // متغيرات المكونات الرئيسية
     private ToolbarLayout toolbarLayout;
     private RecyclerView recyclerView;
     private ScrollListAdapter adapter;
@@ -26,31 +24,24 @@ public class ScrollListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // إعداد اللغة والثيم قبل إنشاء النشاط
+        // إعداد اللغة والثيم قبل الإنشاء
         LanguageHelper.setLocale(this, LanguageHelper.getLanguage(this));
         ThemeHelper.applyTheme(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scroll_list);
 
-        // تهيئة المكونات وإعداد شريط الأدوات والقائمة
         initializeViews();
         setupToolbar();
         setupRecyclerView();
         generateScrollItems();
     }
 
-    /**
-     * تهيئة المتغيرات الخاصة بالمكونات المرئية
-     */
     private void initializeViews() {
         toolbarLayout = findViewById(R.id.toolbar_layout);
         recyclerView = findViewById(R.id.recycler_view);
     }
 
-    /**
-     * إعداد شريط الأدوات والعنوان
-     */
     private void setupToolbar() {
         if (toolbarLayout != null) {
             setSupportActionBar(toolbarLayout.getToolbar());
@@ -70,9 +61,6 @@ public class ScrollListActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * إعداد قائمة العناصر القابلة للتمرير
-     */
     private void setupRecyclerView() {
         if (recyclerView != null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -84,9 +72,6 @@ public class ScrollListActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * توليد عناصر القائمة للتجربة (200 عنصر)
-     */
     private void generateScrollItems() {
         for (int i = 1; i <= 200; i++) {
             String itemText;
@@ -102,8 +87,9 @@ public class ScrollListActivity extends AppCompatActivity {
         }
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // معالجة النقر على زر الرجوع في شريط الأدوات
+        // الاستجابة لزر الرجوع في شريط الأدوات
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
@@ -121,7 +107,7 @@ public class ScrollListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (ThemeHelper.hasThemeChanged(this) || LanguageHelper.hasLanguageChanged(this)) {
-            recreate();
+            recreate(); // إعادة إنشاء النشاط إذا تغير الثيم أو اللغة
         }
     }
 }
