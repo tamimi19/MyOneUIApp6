@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 // استيراد الحزم الصحيحة للمكتبة المحدثة
 import de.dlyt.yanndroid.oneui.layout.DrawerLayout;
+import de.dlyt.yanndroid.oneui.layout.ToolbarLayout;
 import de.dlyt.yanndroid.oneui.drawer.OptionButton;
 import de.dlyt.yanndroid.oneui.drawer.OptionGroup;
 
@@ -17,6 +18,7 @@ import com.example.oneuiapp.utils.CrashHandler;
 public class MainActivity extends AppCompatActivity {
     // متغيرات المكونات الرئيسية
     private DrawerLayout drawerLayout;
+    private ToolbarLayout toolbarLayout;
     private OptionGroup optionGroup;
     private OptionButton homeOption;
     private OptionButton scrollListOption;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         // تهيئة المتغيرات وإعداد خيارات اللوحة الجانبية
         initializeViews();
+        setupToolbar();
         setupDrawerOptions();
     }
 
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initializeViews() {
         drawerLayout = findViewById(R.id.drawer_layout);
+        toolbarLayout = findViewById(R.id.toolbar_layout);
         optionGroup = findViewById(R.id.option_group);
         homeOption = findViewById(R.id.option_home);
         scrollListOption = findViewById(R.id.option_scroll_list);
@@ -49,27 +53,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * إعداد شريط الأدوات
+     */
+    private void setupToolbar() {
+        // ربط شريط الأدوات بـ DrawerLayout
+        if (toolbarLayout != null && drawerLayout != null) {
+            drawerLayout.setToolbar(toolbarLayout);
+        }
+    }
+
+    /**
      * إعداد خيارات اللوحة الجانبية ومعالجات الأحداث
      */
     private void setupDrawerOptions() {
         // تعيين الخيار الافتراضي المحدد
-        optionGroup.setSelectedOptionButton(homeOption);
+        if (optionGroup != null && homeOption != null) {
+            optionGroup.setSelectedOptionButton(homeOption);
+        }
 
         // إعداد مستمع النقر على الخيارات
-        optionGroup.setOnOptionButtonClickListener(new OptionGroup.OnOptionButtonClickListener() {
-            @Override
-            public void onOptionButtonClick(OptionButton optionButton, int position, int id) {
-                handleDrawerSelection(id);
-            }
-        });
+        if (optionGroup != null) {
+            optionGroup.setOnOptionButtonClickListener(new OptionGroup.OnOptionButtonClickListener() {
+                @Override
+                public void onOptionButtonClick(OptionButton optionButton, int position, int id) {
+                    handleDrawerSelection(id);
+                }
+            });
+        }
 
         // مستمع لإغلاق القائمة عند النقر على الأيقونة
-        drawerLayout.setDrawerIconOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.setDrawerOpen(false, true);
-            }
-        });
+        if (drawerLayout != null) {
+            drawerLayout.setOnDrawerListener(new DrawerLayout.OnDrawerListener() {
+                @Override
+                public void onDrawerOpened() {
+                    // يمكن إضافة منطق عند فتح الدرج
+                }
+
+                @Override
+                public void onDrawerClosed() {
+                    // يمكن إضافة منطق عند إغلاق الدرج
+                }
+            });
+        }
     }
 
     /**
@@ -78,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private void handleDrawerSelection(int id) {
         // إغلاق القائمة الجانبية أولاً
-        drawerLayout.setDrawerOpen(false, true);
+        if (drawerLayout != null) {
+            drawerLayout.setDrawerOpen(false, true);
+        }
 
         if (id == R.id.option_home) {
             // المستخدم في الصفحة الرئيسية بالفعل - لا نحتاج لفعل شيء
@@ -112,6 +139,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (drawerLayout != null && drawerLayout.isDrawerOpen()) {
+            drawerLayout.setDrawerOpen(false, true);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
