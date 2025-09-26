@@ -17,7 +17,6 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class SettingsActivity extends AppCompatActivity {
     
-    // متغيرات المكونات الرئيسية
     private ToolbarLayout toolbarLayout;
     private RelatedCard languageCard;
     private RelatedCard themeCard;
@@ -73,7 +72,7 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (!isLanguageChanging) {
-                        toggleLanguage();
+                        toggleLanguage(); // سيستدعي recreate() لتطبيق التغييرات78
                     }
                 }
             });
@@ -85,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (!isThemeChanging) {
-                        toggleTheme();
+                        toggleTheme(); // سيستدعي recreate() لتطبيق التغييرات910
                     }
                 }
             });
@@ -142,7 +141,7 @@ public class SettingsActivity extends AppCompatActivity {
         String newLang = currentLang.equals("ar") ? "en" : "ar";
         LanguageHelper.setLanguage(this, newLang);
         LanguageHelper.setLocale(this, newLang);
-        recreate();
+        recreate(); // إعادة إنشاء النشاط لتحديث الواجهة باللغة الجديدة
     }
     
     private void toggleTheme() {
@@ -150,7 +149,7 @@ public class SettingsActivity extends AppCompatActivity {
         boolean isDark = ThemeHelper.isDarkTheme(this);
         ThemeHelper.setDarkTheme(this, !isDark);
         ThemeHelper.applyTheme(this);
-        recreate();
+        recreate(); // إعادة إنشاء النشاط لتحديث الثيم الجديد
     }
     
     private void openNotificationSettings() {
@@ -165,7 +164,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
     
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // الاستجابة لزر الرجوع في شريط الأدوات
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
@@ -187,4 +188,4 @@ public class SettingsActivity extends AppCompatActivity {
         updateLanguageText();
         updateThemeText();
     }
-}
+            }
