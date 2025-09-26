@@ -11,7 +11,6 @@
     <!-- استبدال OptionGroup/OptionButton بأزرار عادية مع نمط OneUI -->
     <Button
         android:id="@+id/option_home"
-        style="@style/OneUIOptionStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nav_home"
@@ -20,7 +19,6 @@
 
     <Button
         android:id="@+id/option_scroll_list"
-        style="@style/OneUIOptionStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nav_scroll_list"
@@ -29,7 +27,6 @@
 
     <Button
         android:id="@+id/option_settings"
-        style="@style/OneUIOptionStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nav_settings"
