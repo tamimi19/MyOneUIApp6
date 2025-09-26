@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- صلاحيات التخزين -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -12,6 +13,12 @@
         android:theme="@style/OneUITheme"
         tools:targetApi="36">
 
+        <!-- ميتاداتا لتفعيل ميزات Samsung OneUI -->
+        <meta-data 
+            android:name="SamsungBasicInteraction" 
+            android:value="SEP10" />
+
+        <!-- النشاط الرئيسي -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -22,12 +29,14 @@
             </intent-filter>
         </activity>
 
+        <!-- نشاط الإعدادات -->
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
             android:theme="@style/OneUITheme"
             android:parentActivityName=".MainActivity" />
 
+        <!-- نشاط قائمة التمرير -->
         <activity
             android:name=".ScrollListActivity"
             android:exported="false"
