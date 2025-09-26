@@ -16,7 +16,7 @@ import com.example.oneuiapp.utils.LanguageHelper;
 import com.google.android.material.textview.MaterialTextView;
 
 public class SettingsActivity extends AppCompatActivity {
-    
+
     private ToolbarLayout toolbarLayout;
     private RelatedCard languageCard;
     private RelatedCard themeCard;
@@ -26,20 +26,20 @@ public class SettingsActivity extends AppCompatActivity {
     private MaterialTextView notificationOption;
     private boolean isLanguageChanging = false;
     private boolean isThemeChanging = false;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         LanguageHelper.setLocale(this, LanguageHelper.getLanguage(this));
         ThemeHelper.applyTheme(this);
-        
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        
+
         initializeViews();
         setupToolbar();
         setupSettingsOptions();
     }
-    
+
     private void initializeViews() {
         toolbarLayout = findViewById(R.id.toolbar_layout);
         languageCard = findViewById(R.id.language_card);
@@ -49,22 +49,24 @@ public class SettingsActivity extends AppCompatActivity {
         themeOption = findViewById(R.id.theme_option);
         notificationOption = findViewById(R.id.notification_option);
     }
-    
+
     private void setupToolbar() {
         if (toolbarLayout != null) {
             setSupportActionBar(toolbarLayout.getToolbar());
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
-            toolbarLayout.setOnNavigationClickListener(new ToolbarLayout.OnNavigationClickListener() {
+
+            // استخدام طريقة مدعومة: الحصول على Toolbar القياسي وتعيين مستمع النقر
+            toolbarLayout.getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick() {
+                public void onClick(View v) {
                     onBackPressed();
                 }
             });
         }
     }
-    
+
     private void setupSettingsOptions() {
         updateLanguageText();
         if (languageOption != null) {
@@ -72,24 +74,24 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (!isLanguageChanging) {
-                        toggleLanguage(); // سيستدعي recreate() لتطبيق التغييرات78
+                        toggleLanguage();
                     }
                 }
             });
         }
-        
+
         updateThemeText();
         if (themeOption != null) {
             themeOption.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!isThemeChanging) {
-                        toggleTheme(); // سيستدعي recreate() لتطبيق التغييرات910
+                        toggleTheme();
                     }
                 }
             });
         }
-        
+
         if (notificationOption != null) {
             notificationOption.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -98,10 +100,10 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             });
         }
-        
+
         setCardTitles();
     }
-    
+
     private void setCardTitles() {
         if (languageCard != null) {
             languageCard.setTitle(getString(R.string.language_setting));
@@ -113,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
             notificationCard.setTitle(getString(R.string.notification_setting));
         }
     }
-    
+
     private void updateLanguageText() {
         if (languageOption != null) {
             String currentLang = LanguageHelper.getLanguage(this);
@@ -124,7 +126,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
     }
-    
+
     private void updateThemeText() {
         if (themeOption != null) {
             if (ThemeHelper.isDarkTheme(this)) {
@@ -134,24 +136,24 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
     }
-    
+
     private void toggleLanguage() {
         isLanguageChanging = true;
         String currentLang = LanguageHelper.getLanguage(this);
         String newLang = currentLang.equals("ar") ? "en" : "ar";
         LanguageHelper.setLanguage(this, newLang);
         LanguageHelper.setLocale(this, newLang);
-        recreate(); // إعادة إنشاء النشاط لتحديث الواجهة باللغة الجديدة
+        recreate();
     }
-    
+
     private void toggleTheme() {
         isThemeChanging = true;
         boolean isDark = ThemeHelper.isDarkTheme(this);
         ThemeHelper.setDarkTheme(this, !isDark);
         ThemeHelper.applyTheme(this);
-        recreate(); // إعادة إنشاء النشاط لتحديث الثيم الجديد
+        recreate();
     }
-    
+
     private void openNotificationSettings() {
         try {
             Intent intent = new Intent();
@@ -163,7 +165,7 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // الاستجابة لزر الرجوع في شريط الأدوات
@@ -173,13 +175,13 @@ public class SettingsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.fade_in, R.anim.slide_out_right);
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
