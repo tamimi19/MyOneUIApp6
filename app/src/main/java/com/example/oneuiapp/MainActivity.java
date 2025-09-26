@@ -1,4 +1,3 @@
-// app/src/main/java/com/example/oneuiapp/MainActivity.java
 package com.example.oneuiapp;
 
 import android.content.Intent;
