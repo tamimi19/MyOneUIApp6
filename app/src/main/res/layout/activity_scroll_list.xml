@@ -1,3 +1,4 @@
+<!-- app/src/main/res/layout/activity_scroll_list.xml -->
 <?xml version="1.0" encoding="utf-8"?>
 <de.dlyt.yanndroid.oneui.layout.ToolbarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,14 +11,12 @@
     app:expandable="true"
     app:expanded="false">
 
-    <!-- عرض التمرير المتداخل يحتوي على قائمة العناصر -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:overScrollMode="ifContentScrolls">
 
-        <!-- قائمة العناصر القابلة للتمرير -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
