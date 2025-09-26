@@ -1,3 +1,4 @@
+// app/src/main/java/com/example/oneuiapp/MainActivity.java
 package com.example.oneuiapp;
 
 import android.content.Intent;
@@ -132,10 +133,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout != null && drawerLayout.getDrawerState() != DrawerLayout.STATE_CLOSED) {
+        // إغلاق الدرج الجانبي إذا كان مفتوحاً (أو محاولة إغلاقه دائماً)
+        if (drawerLayout != null) {
             drawerLayout.setDrawerOpen(false, true);
-        } else {
-            super.onBackPressed();
         }
+        // ثم المتابعة بالرجوع الافتراضي
+        super.onBackPressed();
     }
 }
