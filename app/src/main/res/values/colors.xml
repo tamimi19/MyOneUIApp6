@@ -1,37 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- OneUI Light Colors محدث -->
-    <color name="primary_color">#ff0381fe</color>
-    <color name="secondary_color">#ff4ba5ff</color>
-    <color name="primary_dark_color">#ff0266cc</color>
-    
-    <!-- Background Colors محسن -->
-    <color name="background_color">#fff5f5f5</color>
-    <color name="surface_color">@android:color/transparent</color>
-    
-    <!-- Text Colors -->
-    <color name="text_primary">#ff212121</color>
-    <color name="text_secondary">#ff757575</color>
-    
-    <!-- Card Colors - إزالة الخلفية الصريحة -->
-    <color name="card_background">@android:color/transparent</color>
-    
-    <!-- Divider -->
-    <color name="divider_color">#ffe5e5e5</color>
-    
-    <!-- Status Bar -->
-    <color name="status_bar_color">#fff5f5f5</color>
-    
-    <!-- Navigation Bar -->
-    <color name="navigation_bar_color">#fff5f5f5</color>
-    
-    <!-- OneUI Specific Colors -->
-    <color name="oneui_accent_color">#ff0381fe</color>
-    <color name="oneui_ripple_color">#1f0381fe</color>
-    <color name="oneui_separator_color">#0d000000</color>
-    
-    <!-- Semantic Colors -->
-    <color name="success_color">#ff4caf50</color>
-    <color name="warning_color">#ffff9800</color>
-    <color name="error_color">#fff44336</color>
 </resources>
