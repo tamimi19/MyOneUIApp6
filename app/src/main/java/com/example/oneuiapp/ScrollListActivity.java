@@ -2,6 +2,7 @@ package com.example.oneuiapp;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScrollListActivity extends AppCompatActivity {
-    
+
     private ToolbarLayout toolbarLayout;
     private RecyclerView recyclerView;
     private ScrollListAdapter adapter;
@@ -24,7 +25,6 @@ public class ScrollListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // إعداد اللغة والثيم قبل الإنشاء
         LanguageHelper.setLocale(this, LanguageHelper.getLanguage(this));
         ThemeHelper.applyTheme(this);
 
@@ -52,9 +52,10 @@ public class ScrollListActivity extends AppCompatActivity {
             toolbarLayout.setExpandable(true);
             toolbarLayout.setExpanded(false, false);
 
-            toolbarLayout.setOnNavigationClickListener(new ToolbarLayout.OnNavigationClickListener() {
+            // استبدال المستمع غير المدعوم بمستمع Toolbar القياسي
+            toolbarLayout.getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick() {
+                public void onClick(View v) {
                     onBackPressed();
                 }
             });
@@ -107,7 +108,7 @@ public class ScrollListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (ThemeHelper.hasThemeChanged(this) || LanguageHelper.hasLanguageChanged(this)) {
-            recreate(); // إعادة إنشاء النشاط إذا تغير الثيم أو اللغة
+            recreate();
         }
     }
 }
