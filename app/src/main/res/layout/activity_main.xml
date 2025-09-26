@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:drawer_icon="@android:drawable/ic_menu_sort_by_size">
 
     <!-- المحتوى الرئيسي للتطبيق -->
     <LinearLayout
