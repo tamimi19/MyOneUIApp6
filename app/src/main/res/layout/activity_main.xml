@@ -5,10 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:title="@string/app_name"
-    app:subtitle="@string/app_subtitle"
-    app:expanded="true"
-    app:expandable="true">
+    app:drawer_icon="@drawable/ic_menu">
 
     <!-- المحتوى الرئيسي للتطبيق -->
     <LinearLayout
@@ -16,6 +13,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_location="main_content">
+        
+        <!-- شريط الأدوات المدمج -->
+        <de.dlyt.yanndroid.oneui.layout.ToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/app_name"
+            app:subtitle="@string/app_subtitle"
+            app:expanded="true"
+            app:expandable="true" />
         
         <include layout="@layout/content_main" />
         
