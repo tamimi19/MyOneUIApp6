@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
-// استيراد الحزم الصحيحة للمكتبة المحدثة
+// استيراد الحزم الأساسية فقط
 import de.dlyt.yanndroid.oneui.layout.DrawerLayout;
 import de.dlyt.yanndroid.oneui.layout.ToolbarLayout;
-import de.dlyt.yanndroid.oneui.drawer.OptionButton;
-import de.dlyt.yanndroid.oneui.drawer.OptionGroup;
 
 import com.example.oneuiapp.utils.ThemeHelper;
 import com.example.oneuiapp.utils.LanguageHelper;
@@ -19,10 +17,6 @@ public class MainActivity extends AppCompatActivity {
     // متغيرات المكونات الرئيسية
     private DrawerLayout drawerLayout;
     private ToolbarLayout toolbarLayout;
-    private OptionGroup optionGroup;
-    private OptionButton homeOption;
-    private OptionButton scrollListOption;
-    private OptionButton settingsOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // تهيئة المتغيرات وإعداد خيارات اللوحة الجانبية
+        // تهيئة المتغيرات وإعداد الواجهة
         initializeViews();
         setupToolbar();
-        setupDrawerOptions();
+        setupDrawer();
     }
 
     /**
@@ -46,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private void initializeViews() {
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbarLayout = findViewById(R.id.toolbar_layout);
-        optionGroup = findViewById(R.id.option_group);
-        homeOption = findViewById(R.id.option_home);
-        scrollListOption = findViewById(R.id.option_scroll_list);
-        settingsOption = findViewById(R.id.option_settings);
     }
 
     /**
@@ -62,35 +52,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * إعداد خيارات اللوحة الجانبية ومعالجات الأحداث
+     * إعداد الدرج الجانبي
      */
-    private void setupDrawerOptions() {
-        // تعيين الخيار الافتراضي المحدد
-        if (optionGroup != null && homeOption != null) {
-            optionGroup.setSelectedOptionButton(homeOption);
+    private void setupDrawer() {
+        if (drawerLayout != null) {
+            // إعداد النقر على الأزرار يدوياً من خلال findViewById
+            setupDrawerButtons();
         }
+    }
 
-        // إعداد مستمع النقر على الخيارات
-        if (optionGroup != null) {
-            optionGroup.setOnOptionButtonClickListener(new OptionGroup.OnOptionButtonClickListener() {
+    /**
+     * إعداد أزرار الدرج الجانبي يدوياً
+     */
+    private void setupDrawerButtons() {
+        View homeButton = findViewById(R.id.option_home);
+        View scrollListButton = findViewById(R.id.option_scroll_list);
+        View settingsButton = findViewById(R.id.option_settings);
+
+        if (homeButton != null) {
+            homeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onOptionButtonClick(OptionButton optionButton, int position, int id) {
-                    handleDrawerSelection(id);
+                public void onClick(View v) {
+                    handleDrawerSelection(R.id.option_home);
                 }
             });
         }
 
-        // مستمع أحداث الدرج
-        if (drawerLayout != null) {
-            drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+        if (scrollListButton != null) {
+            scrollListButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onDrawerOpened() {
-                    // يمكن إضافة منطق عند فتح الدرج
+                public void onClick(View v) {
+                    handleDrawerSelection(R.id.option_scroll_list);
                 }
+            });
+        }
 
+        if (settingsButton != null) {
+            settingsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onDrawerClosed() {
-                    // يمكن إضافة منطق عند إغلاق الدرج
+                public void onClick(View v) {
+                    handleDrawerSelection(R.id.option_settings);
                 }
             });
         }
@@ -107,14 +108,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.option_home) {
-            // المستخدم في الصفحة الرئيسية بالفعل - لا نحتاج لفعل شيء
+            // المستخدم في الصفحة الرئيسية بالفعل
         } else if (id == R.id.option_scroll_list) {
-            // الانتقال إلى نشاط قائمة التمرير
             Intent intent = new Intent(this, ScrollListActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else if (id == R.id.option_settings) {
-            // الانتقال إلى نشاط الإعدادات
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -129,16 +128,11 @@ public class MainActivity extends AppCompatActivity {
         if (ThemeHelper.hasThemeChanged(this) || LanguageHelper.hasLanguageChanged(this)) {
             recreate();
         }
-        
-        // التأكد من اختيار خيار الصفحة الرئيسية عند العودة للنشاط
-        if (optionGroup != null && homeOption != null) {
-            optionGroup.setSelectedOptionButton(homeOption);
-        }
     }
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout != null && drawerLayout.isDrawerOpen()) {
+        if (drawerLayout != null && drawerLayout.getDrawerState() != DrawerLayout.STATE_CLOSED) {
             drawerLayout.setDrawerOpen(false, true);
         } else {
             super.onBackPressed();
