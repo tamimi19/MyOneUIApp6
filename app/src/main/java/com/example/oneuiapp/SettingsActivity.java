@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
-import de.dlyt.yanndroid.samsung.RelatedCard;
-import de.dlyt.yanndroid.samsung.SwitchBar;
+// استيراد الحزم الصحيحة للمكتبة المحدثة
+import de.dlyt.yanndroid.oneui.layout.ToolbarLayout;
+import de.dlyt.yanndroid.oneui.widget.RelatedCard;
 
 import com.example.oneuiapp.utils.ThemeHelper;
 import com.example.oneuiapp.utils.LanguageHelper;
@@ -19,6 +18,7 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class SettingsActivity extends AppCompatActivity {
     
+    // متغيرات المكونات الرئيسية
     private ToolbarLayout toolbarLayout;
     private RelatedCard languageCard;
     private RelatedCard themeCard;
@@ -31,18 +31,22 @@ public class SettingsActivity extends AppCompatActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Apply language and theme before creating
+        // تطبيق اللغة والثيم قبل الإنشاء
         LanguageHelper.setLocale(this, LanguageHelper.getLanguage(this));
         ThemeHelper.applyTheme(this);
         
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         
+        // تهيئة المكونات وإعداد شريط الأدوات وخيارات الإعدادات
         initializeViews();
         setupToolbar();
         setupSettingsOptions();
     }
     
+    /**
+     * تهيئة المتغيرات الخاصة بالمكونات المرئية
+     */
     private void initializeViews() {
         toolbarLayout = findViewById(R.id.toolbar_layout);
         languageCard = findViewById(R.id.language_card);
@@ -53,49 +57,70 @@ public class SettingsActivity extends AppCompatActivity {
         notificationOption = findViewById(R.id.notification_option);
     }
     
+    /**
+     * إعداد شريط الأدوات والتنقل
+     */
     private void setupToolbar() {
+        // تعيين العنوان والعنوان الفرعي
         toolbarLayout.setTitle(getString(R.string.settings_title));
         toolbarLayout.setSubtitle(getString(R.string.settings_subtitle));
-        toolbarLayout.setNavigationIcon(getDrawable(R.drawable.ic_back));
         
-        // Enable action bar
+        // تفعيل شريط الأدوات
         setSupportActionBar(toolbarLayout.getToolbar());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        // Setup navigation click listener
-        toolbarLayout.setNavigationOnClickListener(v -> {
-            onBackPressed();
+        // إعداد مستمع النقر على زر التنقل
+        toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
         });
     }
     
+    /**
+     * إعداد خيارات الإعدادات ومعالجات الأحداث
+     */
     private void setupSettingsOptions() {
-        // Setup language option
+        // إعداد خيار اللغة
         updateLanguageText();
-        languageOption.setOnClickListener(v -> {
-            if (!isLanguageChanging) {
-                toggleLanguage();
+        languageOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isLanguageChanging) {
+                    toggleLanguage();
+                }
             }
         });
         
-        // Setup theme option  
+        // إعداد خيار الثيم
         updateThemeText();
-        themeOption.setOnClickListener(v -> {
-            if (!isThemeChanging) {
-                toggleTheme();
+        themeOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isThemeChanging) {
+                    toggleTheme();
+                }
             }
         });
         
-        // Setup notification option
-        notificationOption.setOnClickListener(v -> {
-            openNotificationSettings();
+        // إعداد خيار الإشعارات
+        notificationOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNotificationSettings();
+            }
         });
         
-        // Set card titles
+        // تعيين عناوين البطاقات
         languageCard.setTitle(getString(R.string.language_setting));
         themeCard.setTitle(getString(R.string.theme_setting));
         notificationCard.setTitle(getString(R.string.notification_setting));
     }
     
+    /**
+     * تحديث نص اللغة الحالية
+     */
     private void updateLanguageText() {
         String currentLang = LanguageHelper.getLanguage(this);
         if (currentLang.equals("ar")) {
@@ -105,6 +130,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
     
+    /**
+     * تحديث نص الثيم الحالي
+     */
     private void updateThemeText() {
         if (ThemeHelper.isDarkTheme(this)) {
             themeOption.setText(getString(R.string.current_theme_dark));
@@ -113,31 +141,40 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
     
+    /**
+     * تبديل لغة التطبيق
+     */
     private void toggleLanguage() {
         isLanguageChanging = true;
         String currentLang = LanguageHelper.getLanguage(this);
         String newLang = currentLang.equals("ar") ? "en" : "ar";
         
-        // Save new language
+        // حفظ اللغة الجديدة
         LanguageHelper.setLanguage(this, newLang);
         LanguageHelper.setLocale(this, newLang);
         
-        // Recreate activity to apply changes immediately
+        // إعادة إنشاء النشاط لتطبيق التغييرات فوراً
         recreate();
     }
     
+    /**
+     * تبديل ثيم التطبيق
+     */
     private void toggleTheme() {
         isThemeChanging = true;
         boolean isDark = ThemeHelper.isDarkTheme(this);
         
-        // Toggle theme
+        // تبديل الثيم
         ThemeHelper.setDarkTheme(this, !isDark);
         ThemeHelper.applyTheme(this);
         
-        // Recreate activity to apply changes immediately
+        // إعادة إنشاء النشاط لتطبيق التغييرات فوراً
         recreate();
     }
     
+    /**
+     * فتح إعدادات الإشعارات
+     */
     private void openNotificationSettings() {
         try {
             Intent intent = new Intent();
@@ -145,7 +182,7 @@ public class SettingsActivity extends AppCompatActivity {
             intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
             startActivity(intent);
         } catch (Exception e) {
-            // Fallback to general notification settings
+            // الرجوع إلى إعدادات الإشعارات العامة
             Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
             startActivity(intent);
         }
@@ -153,6 +190,7 @@ public class SettingsActivity extends AppCompatActivity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // معالجة النقر على زر الرجوع في شريط الأدوات
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
@@ -163,16 +201,18 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        // تطبيق انتقال مخصص عند الرجوع
         overridePendingTransition(R.anim.fade_in, R.anim.slide_out_right);
     }
     
     @Override
     protected void onResume() {
         super.onResume();
+        // إعادة تعيين حالة التغيير
         isLanguageChanging = false;
         isThemeChanging = false;
         
-        // Update texts in case they changed
+        // تحديث النصوص في حالة تغييرها
         updateLanguageText();
         updateThemeText();
     }
