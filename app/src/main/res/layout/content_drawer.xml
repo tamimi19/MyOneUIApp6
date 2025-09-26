@@ -1,38 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/option_group"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:background="?android:attr/windowBackground">
 
-    <!-- مجموعة خيارات اللوحة الجانبية -->
-    <de.dlyt.yanndroid.oneui.drawer.OptionGroup
-        android:id="@+id/option_group"
+    <!-- استبدال OptionGroup/OptionButton بأزرار عادية مع نمط OneUI -->
+    <Button
+        android:id="@+id/option_home"
+        style="@style/OneUIOptionStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:selectedOptionButton="@id/option_home">
+        android:text="@string/nav_home"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="16dp" />
 
-        <!-- خيار الصفحة الرئيسية -->
-        <de.dlyt.yanndroid.oneui.drawer.OptionButton
-            android:id="@+id/option_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="@string/nav_home" />
+    <Button
+        android:id="@+id/option_scroll_list"
+        style="@style/OneUIOptionStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nav_scroll_list"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="16dp" />
 
-        <!-- خيار قائمة التمرير -->
-        <de.dlyt.yanndroid.oneui.drawer.OptionButton
-            android:id="@+id/option_scroll_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="@string/nav_scroll_list" />
-
-        <!-- خيار الإعدادات -->
-        <de.dlyt.yanndroid.oneui.drawer.OptionButton
-            android:id="@+id/option_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="@string/nav_settings" />
-
-    </de.dlyt.yanndroid.oneui.drawer.OptionGroup>
+    <Button
+        android:id="@+id/option_settings"
+        style="@style/OneUIOptionStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nav_settings"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="16dp" />
 
 </LinearLayout>
