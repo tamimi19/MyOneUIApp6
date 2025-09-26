@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
-// استيراد الحزم الجديدة للمكتبة المحدثة
+// استيراد الحزم الصحيحة للمكتبة المحدثة
 import de.dlyt.yanndroid.oneui.layout.DrawerLayout;
 import de.dlyt.yanndroid.oneui.drawer.OptionButton;
 import de.dlyt.yanndroid.oneui.drawer.OptionGroup;
