@@ -1,4 +1,3 @@
-// app/src/main/java/com/example/oneuiapp/ScrollListActivity.java
 package com.example.oneuiapp;
 
 import android.os.Bundle;
