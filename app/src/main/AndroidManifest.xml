@@ -38,7 +38,7 @@
         <!-- نشاط قائمة التمرير -->
         <activity
             android:name=".ScrollListActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/OneUITheme"
             android:parentActivityName=".MainActivity" />
 
