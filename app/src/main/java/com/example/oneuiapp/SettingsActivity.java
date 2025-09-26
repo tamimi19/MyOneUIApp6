@@ -61,21 +61,21 @@ public class SettingsActivity extends AppCompatActivity {
      * إعداد شريط الأدوات والتنقل
      */
     private void setupToolbar() {
-        // تعيين العنوان والعنوان الفرعي
-        toolbarLayout.setTitle(getString(R.string.settings_title));
-        toolbarLayout.setSubtitle(getString(R.string.settings_subtitle));
-        
-        // تفعيل شريط الأدوات
-        setSupportActionBar(toolbarLayout.getToolbar());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
-        // إعداد مستمع النقر على زر التنقل
-        toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
+        if (toolbarLayout != null) {
+            // تعيين شريط الأدوات
+            setSupportActionBar(toolbarLayout.getToolbar());
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
-        });
+            
+            // إعداد مستمع النقر على زر التنقل
+            toolbarLayout.setOnNavigationClickListener(new ToolbarLayout.OnNavigationClickListener() {
+                @Override
+                public void onClick() {
+                    onBackPressed();
+                }
+            });
+        }
     }
     
     /**
@@ -84,49 +84,70 @@ public class SettingsActivity extends AppCompatActivity {
     private void setupSettingsOptions() {
         // إعداد خيار اللغة
         updateLanguageText();
-        languageOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isLanguageChanging) {
-                    toggleLanguage();
+        if (languageOption != null) {
+            languageOption.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!isLanguageChanging) {
+                        toggleLanguage();
+                    }
                 }
-            }
-        });
+            });
+        }
         
         // إعداد خيار الثيم
         updateThemeText();
-        themeOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isThemeChanging) {
-                    toggleTheme();
+        if (themeOption != null) {
+            themeOption.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!isThemeChanging) {
+                        toggleTheme();
+                    }
                 }
-            }
-        });
+            });
+        }
         
         // إعداد خيار الإشعارات
-        notificationOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNotificationSettings();
-            }
-        });
+        if (notificationOption != null) {
+            notificationOption.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openNotificationSettings();
+                }
+            });
+        }
         
-        // تعيين عناوين البطاقات
-        languageCard.setTitle(getString(R.string.language_setting));
-        themeCard.setTitle(getString(R.string.theme_setting));
-        notificationCard.setTitle(getString(R.string.notification_setting));
+        // تعيين عناوين البطاقات باستخدام البيانات من strings.xml
+        setCardTitles();
+    }
+    
+    /**
+     * تعيين عناوين البطاقات
+     */
+    private void setCardTitles() {
+        if (languageCard != null) {
+            languageCard.setTitle(getString(R.string.language_setting));
+        }
+        if (themeCard != null) {
+            themeCard.setTitle(getString(R.string.theme_setting));
+        }
+        if (notificationCard != null) {
+            notificationCard.setTitle(getString(R.string.notification_setting));
+        }
     }
     
     /**
      * تحديث نص اللغة الحالية
      */
     private void updateLanguageText() {
-        String currentLang = LanguageHelper.getLanguage(this);
-        if (currentLang.equals("ar")) {
-            languageOption.setText(getString(R.string.current_language_arabic));
-        } else {
-            languageOption.setText(getString(R.string.current_language_english));
+        if (languageOption != null) {
+            String currentLang = LanguageHelper.getLanguage(this);
+            if (currentLang.equals("ar")) {
+                languageOption.setText(getString(R.string.current_language_arabic));
+            } else {
+                languageOption.setText(getString(R.string.current_language_english));
+            }
         }
     }
     
@@ -134,10 +155,12 @@ public class SettingsActivity extends AppCompatActivity {
      * تحديث نص الثيم الحالي
      */
     private void updateThemeText() {
-        if (ThemeHelper.isDarkTheme(this)) {
-            themeOption.setText(getString(R.string.current_theme_dark));
-        } else {
-            themeOption.setText(getString(R.string.current_theme_light));
+        if (themeOption != null) {
+            if (ThemeHelper.isDarkTheme(this)) {
+                themeOption.setText(getString(R.string.current_theme_dark));
+            } else {
+                themeOption.setText(getString(R.string.current_theme_light));
+            }
         }
     }
     
