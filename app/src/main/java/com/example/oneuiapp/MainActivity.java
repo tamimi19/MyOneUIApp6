@@ -56,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
      * إعداد شريط الأدوات
      */
     private void setupToolbar() {
-        // ربط شريط الأدوات بـ DrawerLayout
-        if (toolbarLayout != null && drawerLayout != null) {
-            drawerLayout.setToolbar(toolbarLayout);
+        if (toolbarLayout != null) {
+            setSupportActionBar(toolbarLayout.getToolbar());
         }
     }
 
@@ -81,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        // مستمع لإغلاق القائمة عند النقر على الأيقونة
+        // مستمع أحداث الدرج
         if (drawerLayout != null) {
-            drawerLayout.setOnDrawerListener(new DrawerLayout.OnDrawerListener() {
+            drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
                 @Override
                 public void onDrawerOpened() {
                     // يمكن إضافة منطق عند فتح الدرج
